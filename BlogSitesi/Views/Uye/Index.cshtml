@@ -1,0 +1,67 @@
+﻿@model BlogSitesi.Models.Uye
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2  style="padding-top:50px;font-weight:bolder;color:red">Profile</h2>
+
+<div>
+    <h4 style="font-weight:bold;color:black">Member</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Yetki.yetkiAdi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Yetki.yetkiAdi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.kullaniciAdi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.kullaniciAdi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sifre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sifre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AdSoyad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AdSoyad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.foto)
+        </dt>
+
+        <dd>
+           <img src="@Model.foto" class="img-circle img-fluid"   alt="@Model.AdSoyad"/>
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.uyeId }) |
+    @*@Html.ActionLink("Back to List", "Index")*@
+</p>

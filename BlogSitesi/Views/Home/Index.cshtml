@@ -1,0 +1,101 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model IPagedList<BlogSitesi.Models.Makale>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-md-8">
+    
+
+    @foreach (var item in Model)
+    {
+        @*<div class="card mb-4">*@
+            <article class="col-sm-12">
+                <h2>
+                    <a href="/Home/MakaleDetay/@item.makaleId" style="font-size:x-large;font-weight:bolder;color:black">@item.baslik</a>
+                </h2>
+                <p class="lead">
+
+                    <img class="img-circle" src="@item.Uye.foto" alt="@item.Uye.AdSoyad" />
+
+                    <br>
+                    <a href="/Uye/Index/@item.Uye.uyeId " style="font-weight:bold;color:navy">@item.Uye.kullaniciAdi</a>
+                </p>
+                <p><span class="glyphicon glyphicon-time"></span>&nbsp;&nbsp;  @String.Format("{0: MMMM yyyy}", item.tarih)</p>
+                <p><span class="glyphicon glyphicon-tags"></span>&nbsp;&nbsp;  @item.Etikets.Count() </p>
+                <hr>
+                <img class="img-responsive" src="@item.foto" alt="@item.baslik">
+                <hr>
+                @if (item.icerik.Length > 150)
+                {
+                    <p>
+                        @Html.Raw(item.icerik.Substring(0, 150))...
+
+                    </p>
+                }
+                else
+                {
+                    <p style="color:black;font-size:medium">
+                        @Html.Raw(item.icerik)...
+                    </p>
+                }
+                <a href="/Home/MakaleDetay/@item.makaleId" class="btn btn-primary">Devamını Oku &rarr;</a>
+                <span class="glyphicon glyphicon-chevron-right"></span>
+                <hr>
+
+
+            </article>
+        @*</div>*@
+    }
+
+    <div class="row">
+        <div class="col-md-8 text-center">
+            <div class="pagedList pagination-sm">
+                @Html.PagedListPager(Model,Page=>Url.Action("Index",new { Page}),PagedListRenderOptions.Classic)
+            </div>
+        </div>
+
+    </div>
+        </div>
+    @*@foreach (var item in Model)
+    {
+
+        <!-- Blog Post -->
+        <div class="card mb-4">
+            <img class="card-img-top" src="@item.foto" alt="@item.baslik">
+            <div class="card-body">
+                <a href="/Home/MakaleDetay/@item.makaleId" style="font-size:x-large;font-weight:bolder;color:black">@item.baslik</a>
+                
+                @if (item.icerik.Length > 150)
+                {
+                    <p > @Html.Raw(item.icerik.Substring(0, 150))...
+
+                    </p>
+                }
+                else
+                {
+                    <p style="color:black;font-size:medium">
+                        @Html.Raw(item.icerik)...
+                    </p>
+                }
+
+                
+            </div>
+            <div class="lead">
+              <img class="img-circle img-responsive" width="90" src="@item.Uye.foto" alt="@item.Uye.AdSoyad"/>
+                <a href="/Uye/Index/@item.Uye.uyeId" style="margin-left:20px;font-size:large;color:Highlight;font-weight:bold">@item.Uye.kullaniciAdi</a>
+                <p style="margin-left:20px;font-size:large;color:Highlight;font-weight:100">
+                    <span class="glyphicon glyphicon-time" ></span>
+                   @String.Format("{0: MMMM yyyy}",@item.tarih)
+                </p>
+            </div>
+            <a href="/Home/MakaleDetay/@item.makaleId" class="btn btn-primary">Devamını Oku &rarr;</a>
+        </div>
+    <!-- Blog Post -->
+
+    }*@
+    
+    
+
